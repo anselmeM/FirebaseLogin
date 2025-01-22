@@ -48,18 +48,6 @@ This project demonstrates a simple user authentication system using Firebase Aut
     *   Open the `login.html` file in your web browser.
     *   You can then sign up, log in, upload a profile image, and test the application features.
 
-## API Key Security on GitHub
-
-*   **Important Security Note:** In client-side JavaScript applications, it is **not possible to completely hide your Firebase API key** from the public. The API key is included in your JavaScript code to allow your app to communicate with Firebase.
-*   **`.gitignore` and Placeholder API Key:**
-    *   This project includes a `.gitignore` file to prevent committing sensitive files like `.env` to the repository.
-    *   For public GitHub repositories, it is recommended to **replace your real Firebase API key and other configuration values in `firebase-config.js` with placeholder strings** (like `"YOUR_API_KEY"`) before committing and pushing your code. This prevents accidental exposure of your actual credentials in the public repository.
-    *   **Remember to replace the placeholders with your *real* Firebase configuration values in your local `firebase-config.js` file for local development and testing.**
-*   **Firebase Security Rules:**
-    *   **The primary security for your Firebase data and services comes from properly configured Firebase Security Rules** in the Firebase Console.  These rules control access to your Firebase backend, regardless of API key exposure.
-    *   **Always focus on writing strong Firebase Security Rules** to protect your data.
-*   **API Key Restrictions:**
-    *   For additional security, you can configure API key restrictions in the Firebase Console (Project settings -> General -> Web API keys -> Restrict API key) to limit how your API key can be used (e.g., by HTTP referrers or API restrictions).
 
 ## Local Storage for Profile Images - Limitations
 

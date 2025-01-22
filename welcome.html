@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="screen"> <!-- Main container for welcome screen -->
-      <img src="img/1.png" alt="Logo" class="logo"> <!-- Display logo image -->
+      <img src="img/1.png" alt="Logo" class="logo" id="logo-image"> <!-- Display logo image - ADDED ID -->
       <div id="message" class="message"></div> <!-- Container for displaying messages -->
 
       <div id="welcome-message">
@@ -22,6 +22,10 @@
           <div id="image-preview-container">
               <img id="image-preview" src="#" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; display: none;">
           </div>
+          <div id="image-upload-loading" class="loading-spinner-container"> <!-- Loading spinner container -->
+              <div class="loading-spinner"></div>
+          </div>
+          <button id="remove-profile-image-button" class="login">Remove Profile Picture</button> <!-- Remove Profile Picture button - ADDED -->
       </div>
 
       <button id="signout-button" class="login">Sign Out</button> <!-- Button to trigger sign out -->

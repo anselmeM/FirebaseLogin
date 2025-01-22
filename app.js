@@ -172,6 +172,7 @@ onAuthStateChanged(auth, (user) => { // Firebase method to listen for auth state
     const currentPath = window.location.pathname; // Get the current path of the webpage
     const usernameDisplay = document.getElementById('username-display'); // Get the username display element
     const imagePreview = document.getElementById('image-preview'); // Get the image preview element
+    const logoImage = document.getElementById('logo-image'); // Get the logo image element
 
     if (user) { // Check if a user is currently signed in
         // User is signed in
@@ -188,6 +189,7 @@ onAuthStateChanged(auth, (user) => { // Firebase method to listen for auth state
         if (profileImageDataUrl) { // Check if profile image data URL exists in local storage
             imagePreview.src = profileImageDataUrl; // Set the src attribute of the image preview element to the data URL
             imagePreview.style.display = 'block'; // Show the image preview element
+            logoImage.src = profileImageDataUrl; // Set the src of the logo image to the profile image as well
         }
 
 
@@ -225,18 +227,53 @@ if (profileImageFile) { // Check if profile image file input exists on the page
                 return; // Exit if no user is signed in
             }
 
+            const loadingSpinner = document.getElementById('image-upload-loading'); // Get the loading spinner container
+            loadingSpinner.style.display = 'flex'; // Show loading spinner
+
             const reader = new FileReader(); // Create a FileReader to read the file as a Data URL
             reader.onload = (e) => { // Add onload event listener to the FileReader
                 const imageDataUrl = e.target.result; // Get the Data URL from the FileReader result
                 localStorage.setItem(`profileImage-${user.uid}`, imageDataUrl); // Store the Data URL in local storage
                 imagePreview.src = imageDataUrl; // Set the src attribute of the image preview element to the Data URL
                 imagePreview.style.display = 'block'; // Show the image preview element
+
+                // Update logo image source immediately after upload
+                const logoImage = document.getElementById('logo-image'); // Get the logo image element
+                logoImage.src = imageDataUrl; // Set the src of the logo image to the profile image
+                
                 showMessage('Profile image uploaded successfully (using local storage)!', 'success'); // Show success message to the user
+                loadingSpinner.style.display = 'none'; // Hide loading spinner on success
             };
             reader.onerror = () => { // Add onerror event listener to the FileReader
                 showMessage('Error reading profile image file.'); // Show error message to the user
+                loadingSpinner.style.display = 'none'; // Hide loading spinner on error
             };
             reader.readAsDataURL(file); // Read the file as a Data URL
         }
+    });
+}
+
+// --- Remove Profile Image ---
+const removeProfileImageButton = document.getElementById('remove-profile-image-button'); // Get the remove profile image button
+
+if (removeProfileImageButton) { // Check if remove profile image button exists on the page
+    removeProfileImageButton.addEventListener('click', () => { // Add click event listener to the remove profile image button
+        const user = auth.currentUser; // Get the currently signed-in user
+        if (!user) { // Check if user is signed in
+            console.error('No user signed in.'); // Log an error if no user is signed in
+            showMessage('No user signed in. Please sign in again.'); // Show error message to the user
+            return; // Exit if no user is signed in
+        }
+
+        localStorage.removeItem(`profileImage-${user.uid}`); // Remove profile image data from local storage
+
+        const imagePreview = document.getElementById('image-preview'); // Get the image preview element
+        const logoImage = document.getElementById('logo-image'); // Get the logo image element
+
+        imagePreview.src = '#'; // Reset image preview source (or you can set to a placeholder image)
+        imagePreview.style.display = 'none'; // Hide image preview
+        logoImage.src = 'https://fakeimg.pl/600x400'; // Reset logo image source to placeholder image from fakeimg.pl
+
+        showMessage('Profile image removed successfully!', 'success'); // Show success message to the user
     });
 }

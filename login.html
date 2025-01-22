@@ -27,30 +27,16 @@
                 <span class="show-hide">Show</span> <!-- Span to toggle password visibility -->
             </div>
 
-            <button class="login" type="submit">Login</button> <!-- Submit button for login form -->
+            <button type="submit" class="login">Login</button> <!-- Submit button for login form -->
         </form>
 
-        <div class="footer"> <!-- Footer section -->
-            <span>Forgot Password?</span> <!-- "Forgot Password?" text -->
-            <a href="signup.html"><span>Sign Up</span></a> <!-- Link to signup page -->
-        </div>
+        <section class="footer"> <!-- Footer section -->
+            <span>Forgot Password?</span> <!-- Link for forgot password functionality -->
+            <a href="signup.html">Sign Up</a> <!-- Link to signup page -->
+        </section>
     </div>
 
     <script src="app.js" type="module"></script> <!-- Link to main application script -->
-    <script>
-        const passwordInput = document.querySelector('.password input'); // Select password input
-        const showHide = document.querySelector('.show-hide'); // Select password visibility toggle
-
-        showHide.addEventListener('click', () => { // Add event listener to toggle
-            if (passwordInput.type === 'password') { // Check if password is hidden
-                passwordInput.type = 'text'; // Show password
-                showHide.textContent = 'Hide'; // Change toggle text to "Hide"
-            } else { // If password is visible
-                passwordInput.type = 'password'; // Hide password
-                showHide.textContent = 'Show'; // Change toggle text to "Show"
-            }
-        });
-    </script>
 </body>
 
 </html>

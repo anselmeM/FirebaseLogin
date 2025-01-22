@@ -26,40 +26,21 @@
                 <span class="show-hide">Show</span> <!-- Span to toggle password visibility -->
             </div>
 
-            <div class="input-group password"> <!-- Input group for confirm password -->
-                <ion-icon name="lock-closed-outline"></ion-icon> <!-- Password lock icon -->
+            <div class="input-group confirm-password"> <!-- Input group for confirm password -->
+                <ion-icon name="lock-closed-outline"></ion-icon> <!-- Confirm password lock icon -->
                 <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required> <!-- Confirm password input field -->
                 <span class="show-hide">Show</span> <!-- Span to toggle confirm password visibility -->
             </div>
 
-            <button class="login" type="submit">Sign Up</button> <!-- Submit button for signup form -->
+            <button type="submit" class="login">Sign Up</button> <!-- Submit button for signup form -->
         </form>
 
-        <div class="footer"> <!-- Footer section for additional links -->
-            <a href="login.html"><span>Login</span></a> <!-- Link to login page -->
-            <span>Forgot Password?</span> <!-- Text for forgot password (non-functional link) -->
-        </div>
+        <section class="footer"> <!-- Footer section -->
+            <a href="login.html">Already have an account? Login</a> <!-- Link to login page -->
+        </section>
     </div>
 
-
-    <script src="app.js" type="module"></script> <!-- Link to main application script as a module -->
-    <script>
-      const passwordInputs = document.querySelectorAll('.password input'); // Select all password input fields
-      const showHideSpans = document.querySelectorAll('.show-hide'); // Select all elements to toggle password visibility
-
-      showHideSpans.forEach((showHide, index) => { // Loop through each show/hide span
-        showHide.addEventListener('click', () => { // Add click event listener to each span
-          const passwordInput = passwordInputs[index]; // Get the corresponding password input
-          if (passwordInput.type === 'password') { // Check if password input type is password (hidden)
-            passwordInput.type = 'text'; // Change input type to text to show password
-            showHide.textContent = 'Hide'; // Change span text to 'Hide'
-          } else { // If password input type is not password (text)
-            passwordInput.type = 'password'; // Change input type back to password to hide password
-            showHide.textContent = 'Show'; // Change span text back to 'Show'
-          }
-        });
-      });
-    </script>
+    <script src="app.js" type="module"></script> <!-- Link to main application script -->
 </body>
 
 </html>

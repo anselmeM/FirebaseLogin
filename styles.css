@@ -1,0 +1,111 @@
+/* Import styles for input groups to maintain consistency */
+@import 'input-group.css';
+/* Import Lato font from Google Fonts for better typography */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Major+Mono+Display&display=swap');
+
+:root {
+  /* Define primary color as a light blue-ish hue */
+  --primary-color: hsl(213deg 85% 97%);
+  /* Define secondary color as a darker blue-gray */
+  --secondary-color: hsl(233deg 36% 38%);
+  /* Set default font family to Lato, with sans-serif as fallback */
+  --primary-font: 'Lato', "sans-serif";
+}
+
+/* Apply styles to all elements */
+* {
+  font-family:var(--primary-font); /* Use primary font defined in :root */
+}
+
+/* Style for the main screen container */
+.screen {
+	background: var(--primary-color); /* Use primary color for background */
+	padding: 2em; /* Add padding around the content */
+	display: flex; /* Use flexbox for layout */
+	flex-direction: column; /* Stack items vertically */
+	border-radius: 30px; /* Rounded corners for a softer look */
+	box-shadow: 0 0 2em hsl(231deg 62% 94%); /* Subtle shadow for depth */
+  width: 350px; /* Fixed width for the screen container */
+}
+
+/* Style for the body element */
+body {
+	-webkit-user-select: none; /* Disable text selection on webkit browsers */
+	-ms-user-select: none; /* Disable text selection on IE/Edge */
+	user-select: none; /* Disable text selection for other browsers */
+	overflow-y: hidden; /* Hide vertical scrollbar */
+	display: flex; /* Use flexbox for centering content */
+	justify-content: center; /* Center content horizontally */
+	align-items: center; /* Center content vertically */
+	background: hsl(218deg 50% 91%); /* Light blue background for the entire page */
+	height: 100vh; /* Set body height to full viewport height */
+}
+
+/* Style for the logo image */
+.logo {
+  display: block; /* Make logo a block-level element */
+  margin: -3em auto 1em; /* Adjust margins for positioning and spacing */
+  width: 80px; /* Fixed width for the logo */
+}
+
+
+/* Style for login buttons */
+.login {
+	padding: 1em 2em; /* Padding inside the button */
+	background: var(--secondary-color); /* Use secondary color for button background */
+	color: hsl(0 0 100); /* White text color */
+	border: none; /* Remove button border */
+	border-radius: 20px; /* Rounded corners for buttons */
+	font-weight: 600; /* Bold font weight */
+  width: 100%; /* Button takes full width of its container */
+  transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+
+  /* Hover effect for login buttons */
+  &:hover {
+    background-color: darken(var(--secondary-color), 5%); /* Darken background color on hover */
+  }
+}
+
+/* Style for the footer section */
+.footer {
+	display: flex; /* Use flexbox for footer layout */
+	justify-content: space-between; /* Space out footer items */
+	font-size: 0.8em; /* Smaller font size for footer text */
+	color: hsl(0deg 0% 37%); /* Gray color for footer text */
+	padding: 2em 0; /* Vertical padding for footer */
+  width: 100%; /* Footer takes full width of its container */
+
+	/* Style for span elements inside footer */
+	span {
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+
+    /* Hover effect for footer spans */
+    &:hover {
+      color: darken(hsl(0deg 0% 37%), 10%); /* Darken text color on hover */
+    }
+  }
+}
+
+/* Style for button elements */
+button { cursor: pointer; } /* Set cursor to pointer for all buttons */
+
+/* Style for message containers */
+.message {
+    padding: 10px; /* Padding inside message box */
+    margin: 10px 0; /* Vertical margins for message box */
+    border-radius: 5px; /* Rounded corners for message box */
+    text-align: center; /* Center-align text inside message box */
+}
+
+/* Error message style */
+.message.error {
+    background-color: #ffebee; /* Light red background for error messages */
+    color: #c62828; /* Dark red text color for error messages */
+}
+
+/* Success message style */
+.message.success {
+    background-color: #e8f5e9; /* Light green background for success messages */
+    color: #2e7d32; /* Dark green text color for success messages */
+}

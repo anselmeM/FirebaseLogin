@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> <!-- Set character set to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configure viewport for responsiveness -->
+    <title>Login</title> <!-- Set document title to "Login" -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> <!-- Import Ionicons for icons -->
+</head>
+
+<body>
+    <div class="screen"> <!-- Main container for the login screen -->
+        <img src="img/1.png" alt="Logo" class="logo"> <!-- Display logo image -->
+        <div id="message" class="message"></div> <!-- Container for displaying messages -->
+
+
+        <form id="signin-form"> <!-- Login form -->
+            <div class="input-group email"> <!-- Input group for email -->
+                <ion-icon name="mail-outline"></ion-icon> <!-- Email icon -->
+                <input type="email" id="email" name="email" placeholder="Email" required> <!-- Email input field -->
+            </div>
+
+            <div class="input-group password"> <!-- Input group for password -->
+                <ion-icon name="lock-closed-outline"></ion-icon> <!-- Password icon -->
+                <input type="password" id="password" name="password" placeholder="Password" required> <!-- Password input field -->
+                <span class="show-hide">Show</span> <!-- Span to toggle password visibility -->
+            </div>
+
+            <button class="login" type="submit">Login</button> <!-- Submit button for login form -->
+        </form>
+
+        <div class="footer"> <!-- Footer section -->
+            <span>Forgot Password?</span> <!-- "Forgot Password?" text -->
+            <a href="signup.html"><span>Sign Up</span></a> <!-- Link to signup page -->
+        </div>
+    </div>
+
+    <script src="app.js" type="module"></script> <!-- Link to main application script -->
+    <script>
+        const passwordInput = document.querySelector('.password input'); // Select password input
+        const showHide = document.querySelector('.show-hide'); // Select password visibility toggle
+
+        showHide.addEventListener('click', () => { // Add event listener to toggle
+            if (passwordInput.type === 'password') { // Check if password is hidden
+                passwordInput.type = 'text'; // Show password
+                showHide.textContent = 'Hide'; // Change toggle text to "Hide"
+            } else { // If password is visible
+                passwordInput.type = 'password'; // Hide password
+                showHide.textContent = 'Show'; // Change toggle text to "Show"
+            }
+        });
+    </script>
+</body>
+
+</html>

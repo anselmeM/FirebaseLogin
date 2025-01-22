@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- Set character set to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configure viewport for responsiveness -->
+    <title>Welcome</title> <!-- Set document title to "Welcome" -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external stylesheet -->
+</head>
+<body>
+    <div class="screen"> <!-- Main container for welcome screen -->
+      <img src="img/1.png" alt="Logo" class="logo"> <!-- Display logo image -->
+      <div id="message" class="message"></div> <!-- Container for displaying messages -->
+
+      <div id="welcome-message">
+          <h2>Welcome, <span id="username-display"></span>!</h2>
+          <p>How is your day?</p>
+      </div>
+
+      <div id="profile-image-upload">
+          <h3>Upload Profile Image</h3>
+          <input type="file" id="profileImageFile" accept="image/*">
+          <div id="image-preview-container">
+              <img id="image-preview" src="#" alt="Profile Image Preview" style="max-width: 100px; max-height: 100px; display: none;">
+          </div>
+      </div>
+
+      <button id="signout-button" class="login">Sign Out</button> <!-- Button to trigger sign out -->
+    </div>
+    <script src="app.js" type="module"></script> <!-- Link to main application script -->
+</body>
+</html>

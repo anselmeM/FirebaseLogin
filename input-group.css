@@ -1,0 +1,40 @@
+/* Style for the input group container */
+.input-group {
+	background: hsl(0deg 0% 100%); /* White background */
+	box-shadow: 0 0 0.5em hsl(231deg 62% 94%); /* Light blue shadow for depth */
+	padding: 1em; /* Padding inside the input group */
+	display: flex; /* Use flexbox for alignment */
+	align-items: center; /* Vertically align items in the center */
+	border-radius: 10px; /* Rounded corners */
+	color: hsl(0deg 0% 30%); /* Dark gray text color */
+  margin-bottom: 10px; /* Margin at the bottom for spacing */
+
+  /* Style for the input element inside the input group */
+  input {
+    flex: 1; /* Take up remaining space */
+    outline: none; /* Remove default input outline */
+    border: none; /* Remove input border */
+    background: transparent; /* Make input background transparent */
+
+    /* Style for the placeholder text in the input */
+    &::placeholder {
+      color: hsl(0deg 0% 60%); /* Light gray placeholder text */
+      font-size: 0.9em; /* Slightly smaller font size for placeholder */
+    }
+  }
+
+  /* Style for the ion-icon inside the input group */
+  ion-icon {
+    color: hsl(0deg 0% 30%); /* Dark gray icon color */
+    margin-right: 0.5em; /* Spacing between icon and input */
+  }
+}
+
+
+/* Nested styles for password input group specifically */
+.password {
+  .show-hide {
+    margin-left: auto; /* Push show/hide icon to the right */
+    cursor: pointer; /* Change cursor to pointer on hover */
+  }
+}

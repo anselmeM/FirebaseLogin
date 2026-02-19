@@ -303,12 +303,4 @@ toggleButtons.forEach(toggle => {
 
     // Click event
     toggle.addEventListener('click', toggleVisibility);
-
-    // Keyboard event (Enter or Space)
-    toggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault(); // Prevent default action (like scrolling for Space)
-            toggleVisibility(); // Toggle visibility
-        }
-    });
 });

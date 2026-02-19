@@ -288,15 +288,17 @@ toggleButtons.forEach(toggle => {
     const input = inputGroup.querySelector('input'); // Find the input field within the group
     if (!input) return;
 
+    const fieldName = input.placeholder || 'password';
+
     // Initial aria-label based on placeholder
-    toggle.setAttribute('aria-label', `Show ${input.placeholder}`); // Set initial accessible label
+    toggle.setAttribute('aria-label', `Show ${fieldName}`); // Set initial accessible label
 
     // Toggle function
     const toggleVisibility = () => {
         const isPassword = input.type === 'password';
         input.type = isPassword ? 'text' : 'password';
         toggle.textContent = isPassword ? 'Hide' : 'Show';
-        toggle.setAttribute('aria-label', `${isPassword ? 'Hide' : 'Show'} ${input.placeholder}`);
+        toggle.setAttribute('aria-label', `${isPassword ? 'Hide' : 'Show'} ${fieldName}`);
     };
 
     // Click event

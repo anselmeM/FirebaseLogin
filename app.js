@@ -277,3 +277,24 @@ if (removeProfileImageButton) { // Check if remove profile image button exists o
         showMessage('Profile image removed successfully!', 'success'); // Show success message to the user
     });
 }
+
+// --- Password Visibility Toggle ---
+const toggleButtons = document.querySelectorAll('.show-hide'); // Select all show/hide buttons
+
+toggleButtons.forEach(button => {
+    button.addEventListener('click', () => { // Add click event listener to each button
+        // Find the input field within the same input-group container
+        const inputGroup = button.closest('.input-group');
+        const input = inputGroup ? inputGroup.querySelector('input') : null;
+
+        if (input) {
+            // Toggle input type between password and text
+            const isPassword = input.type === 'password';
+            input.type = isPassword ? 'text' : 'password';
+
+            // Update button text and aria-label for accessibility
+            button.textContent = isPassword ? 'Hide' : 'Show';
+            button.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        }
+    });
+});

@@ -36,5 +36,10 @@
   .show-hide {
     margin-left: auto; /* Push show/hide icon to the right */
     cursor: pointer; /* Change cursor to pointer on hover */
+    background: transparent; /* Remove default button background */
+    border: none; /* Remove default button border */
+    padding: 0; /* Remove default button padding */
+    font: inherit; /* Inherit font from parent */
+    color: inherit; /* Inherit text color */
   }
 }

@@ -277,3 +277,46 @@ if (removeProfileImageButton) { // Check if remove profile image button exists o
         showMessage('Profile image removed successfully!', 'success'); // Show success message to the user
     });
 }
+
+// --- Password Visibility Toggle ---
+const passwordToggles = document.querySelectorAll('.show-hide'); // Select all password toggle elements
+
+if (passwordToggles.length > 0) {
+    passwordToggles.forEach(toggle => {
+        // Add accessibility attributes
+        toggle.setAttribute('role', 'button'); // Make the span act as a button
+        toggle.setAttribute('tabindex', '0'); // Make the span focusable
+
+        const inputGroup = toggle.closest('.input-group'); // Find the parent input group
+        const input = inputGroup.querySelector('input'); // Find the input field within the group
+
+        if (input) {
+            // Initial aria-label based on placeholder
+            toggle.setAttribute('aria-label', `Show ${input.placeholder}`); // Set initial accessible label
+        }
+
+        // Toggle function
+        const toggleVisibility = () => {
+            if (input.type === 'password') {
+                input.type = 'text'; // Change input type to text to show password
+                toggle.textContent = 'Hide'; // Update toggle text
+                toggle.setAttribute('aria-label', `Hide ${input.placeholder}`); // Update accessible label
+            } else {
+                input.type = 'password'; // Change input type back to password to hide it
+                toggle.textContent = 'Show'; // Update toggle text
+                toggle.setAttribute('aria-label', `Show ${input.placeholder}`); // Update accessible label
+            }
+        };
+
+        // Click event
+        toggle.addEventListener('click', toggleVisibility);
+
+        // Keyboard event (Enter or Space)
+        toggle.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Prevent default action (like scrolling for Space)
+                toggleVisibility(); // Toggle visibility
+            }
+        });
+    });
+}

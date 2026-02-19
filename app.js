@@ -281,20 +281,34 @@ if (removeProfileImageButton) { // Check if remove profile image button exists o
 // --- Password Visibility Toggle ---
 const toggleButtons = document.querySelectorAll('.show-hide'); // Select all show/hide buttons
 
-toggleButtons.forEach(button => {
-    button.addEventListener('click', () => { // Add click event listener to each button
-        // Find the input field within the same input-group container
-        const inputGroup = button.closest('.input-group');
-        const input = inputGroup ? inputGroup.querySelector('input') : null;
+toggleButtons.forEach(toggle => {
+    const inputGroup = toggle.closest('.input-group'); // Find the parent input group
+    if (!inputGroup) return;
 
-        if (input) {
-            // Toggle input type between password and text
-            const isPassword = input.type === 'password';
-            input.type = isPassword ? 'text' : 'password';
+    const input = inputGroup.querySelector('input'); // Find the input field within the group
+    if (!input) return;
 
-            // Update button text and aria-label for accessibility
-            button.textContent = isPassword ? 'Hide' : 'Show';
-            button.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    const fieldName = input.placeholder || 'password';
+
+    // Initial aria-label based on placeholder
+    toggle.setAttribute('aria-label', `Show ${fieldName}`); // Set initial accessible label
+
+    // Toggle function
+    const toggleVisibility = () => {
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        toggle.textContent = isPassword ? 'Hide' : 'Show';
+        toggle.setAttribute('aria-label', `${isPassword ? 'Hide' : 'Show'} ${fieldName}`);
+    };
+
+    // Click event
+    toggle.addEventListener('click', toggleVisibility);
+
+    // Keyboard event (Enter or Space)
+    toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault(); // Prevent default action (like scrolling for Space)
+            toggleVisibility(); // Toggle visibility
         }
     });
 });

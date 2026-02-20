@@ -3,6 +3,7 @@
 	background: hsl(0deg 0% 100%); /* White background */
 	box-shadow: 0 0 0.5em hsl(231deg 62% 94%); /* Light blue shadow for depth */
 	padding: 1em; /* Padding inside the input group */
+    transition: box-shadow 0.2s ease; /* Smooth transition for focus */
 	display: flex; /* Use flexbox for alignment */
 	align-items: center; /* Vertically align items in the center */
 	border-radius: 10px; /* Rounded corners */
@@ -42,4 +43,8 @@
     font: inherit; /* Inherit font from parent */
     color: inherit; /* Inherit text color */
   }
+}
+/* Focus state for input group */
+.input-group:focus-within {
+  box-shadow: 0 0 0.5em hsl(231deg 62% 94%), 0 0 0 2px var(--secondary-color);
 }

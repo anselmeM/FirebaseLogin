@@ -66,10 +66,11 @@ body {
   width: 100%; /* Button takes full width of its container */
   transition: background-color 0.3s ease; /* Smooth background color transition on hover */
 
-  /* Hover effect for login buttons */
-  &:hover {
-    background-color: darken(var(--secondary-color), 5%); /* Darken background color on hover */
-  }
+}
+
+/* Hover effect for login buttons */
+.login:hover {
+  background-color: color-mix(in srgb, var(--secondary-color), black 15%); /* Darken background color on hover */
 }
 
 /* Style for the footer section */
@@ -85,11 +86,11 @@ body {
 	span {
     cursor: pointer; /* Change cursor to pointer on hover */
     transition: color 0.3s ease; /* Smooth color transition on hover */
+  }
 
-    /* Hover effect for footer spans */
-    &:hover {
-      color: darken(hsl(0deg 0% 37%), 10%); /* Darken text color on hover */
-    }
+  /* Hover effect for footer spans */
+  span:hover {
+      color: color-mix(in srgb, hsl(0deg 0% 37%), black 25%); /* Darken text color on hover */
   }
 }
 

@@ -70,7 +70,7 @@ body {
 
 /* Hover effect for login buttons */
 .login:hover {
-  background-color: hsl(233deg 36% 33%); /* Darken background color on hover */
+  background-color: color-mix(in srgb, var(--secondary-color), black 15%); /* Darken background color on hover */
 }
 
 /* Style for the footer section */
@@ -90,7 +90,7 @@ body {
 
   /* Hover effect for footer spans */
   span:hover {
-      color: hsl(0deg 0% 27%); /* Darken text color on hover */
+      color: color-mix(in srgb, hsl(0deg 0% 37%), black 25%); /* Darken text color on hover */
   }
 }
 

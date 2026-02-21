@@ -297,7 +297,14 @@ toggleButtons.forEach(toggle => {
     const toggleVisibility = () => {
         const isPassword = input.type === 'password';
         input.type = isPassword ? 'text' : 'password';
-        toggle.textContent = isPassword ? 'Hide' : 'Show';
+
+        const icon = toggle.querySelector('ion-icon');
+        if (icon) {
+            icon.setAttribute('name', isPassword ? 'eye-off-outline' : 'eye-outline');
+        } else {
+            toggle.textContent = isPassword ? 'Hide' : 'Show';
+        }
+
         toggle.setAttribute('aria-label', `${isPassword ? 'Hide' : 'Show'} ${fieldName}`);
     };
 

@@ -13,22 +13,32 @@ const PATHS = {
 
 // --- Utility Functions ---
 
+// Function to toggle button loading state
+function toggleButtonLoading(button, isLoading) {
+    if (!button) return;
+
+    if (isLoading) {
+        button.setAttribute('disabled', 'true');
+        if (!button.dataset.originalText) {
+            button.dataset.originalText = button.innerHTML;
+        }
+        button.innerHTML = '<span class="btn-spinner"></span>';
+    } else {
+        button.removeAttribute('disabled');
+        if (button.dataset.originalText) {
+            button.innerHTML = button.dataset.originalText;
+            delete button.dataset.originalText;
+        }
+    }
+}
+
 // Function to display messages to the user (e.g., success or error messages)
-function showMessage(message, type = 'error', isLoading = false) {
+function showMessage(message, type = 'error') {
     const messageElement = document.getElementById('message'); // Get the message display element from the DOM
-    const signupButton = document.querySelector('#signup-form button[type="submit"]'); // Get the signup button to disable during loading
 
     if (messageElement) {
         messageElement.textContent = message; // Set the text content of the message element to the provided message
         messageElement.className = `message ${type}`; // Set the class name for styling based on the message type ('error' or 'success')
-
-        if (isLoading) {
-            messageElement.classList.add('loading'); // Add 'loading' class to display loading spinner
-            signupButton && signupButton.setAttribute('disabled', true); // Disable the signup button to prevent multiple submissions
-        } else {
-            messageElement.classList.remove('loading'); // Remove 'loading' class to hide loading spinner
-            signupButton && signupButton.removeAttribute('disabled'); // Enable the signup button
-        }
     } else {
         console.error('Message element not found. Falling back to console:', message); // Log an error if the message element is not found in the DOM
     }
@@ -66,6 +76,8 @@ if (signupForm) { // Check if signup form exists on the page
         // Get email, password, and confirmPassword from the signup form
         const { email, password, confirmPassword } = getFormData(signupForm, ['email', 'password', 'confirmPassword']);
         const emailInput = signupForm.email; // Get the email input element for validation
+        const submitButton = signupForm.querySelector('button[type="submit"]');
+
         emailInput.addEventListener('input', () => { // Add input event listener for real-time email validation
             if (!emailInput.validity.valid) { // Check if the email input value is valid according to HTML validation rules
                 showMessage('Invalid email format.'); // Show error message if email format is invalid
@@ -108,14 +120,17 @@ if (signupForm) { // Check if signup form exists on the page
         }
 
         // Create user account using Firebase Authentication
-        showMessage('Creating account...', 'loading', true); // Show loading message while creating account
+        toggleButtonLoading(submitButton, true);
+        showMessage('Creating account...', 'loading'); // Show loading message while creating account
+
         createUserWithEmailAndPassword(auth, email, password) // Firebase method to create user with email and password
             .then((userCredential) => { // If account creation is successful
                 showMessage('Account created successfully!', 'success'); // Show success message
                 window.location.href = PATHS.LOGIN; // Redirect user to the login page
             })
             .catch((error) => { // If there's an error during account creation
-                showMessage('', 'error', false); // Clear loading message and set message type to error
+                toggleButtonLoading(submitButton, false);
+                showMessage('', 'error'); // Clear loading message and set message type to error
                 if (error.code === 'auth/email-already-in-use') { // Check for specific email-already-in-use error code
                     showMessage('Email already in use. Please use a different email.'); // Show specific error message for email already in use
                 } else if (error.code === 'auth/invalid-email') { // Check for invalid-email error code
@@ -135,15 +150,19 @@ if (signinForm) { // Check if signin form exists on the page
         e.preventDefault(); // Prevent default form submission
         // Get email and password from the signin form
         const { email, password } = getFormData(signinForm, ['email', 'password']);
+        const submitButton = signinForm.querySelector('button[type="submit"]');
 
         // Sign in user using Firebase Authentication
-        showMessage('Signing in...', 'loading', true); // Show loading message while signing in
+        toggleButtonLoading(submitButton, true);
+        showMessage('Signing in...', 'loading'); // Show loading message while signing in
+
         signInWithEmailAndPassword(auth, email, password) // Firebase method to sign in user with email and password
             .then((userCredential) => { // If signin is successful
                 window.location.href = PATHS.WELCOME; // Redirect user to the welcome page
             })
             .catch((error) => { // If there's an error during signin
-                showMessage('', 'error', false); // Clear loading message and set message type to error
+                toggleButtonLoading(submitButton, false);
+                showMessage('', 'error'); // Clear loading message and set message type to error
                 console.error('Error signing in:', error.message); // Log the error message to the console
                 showMessage(error.message); // Show error message to the user
             });

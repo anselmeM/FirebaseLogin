@@ -17,18 +17,18 @@
         <form id="signup-form"> <!-- Signup form -->
             <div class="input-group email"> <!-- Input group for email -->
                 <ion-icon name="mail-outline"></ion-icon> <!-- Email icon -->
-                <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" required> <!-- Email input field -->
+                <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" autocomplete="username" required> <!-- Email input field -->
             </div>
 
             <div class="input-group password"> <!-- Input group for password -->
                 <ion-icon name="lock-closed-outline"></ion-icon> <!-- Password lock icon -->
-                <input type="password" id="password" name="password" placeholder="Password" aria-label="Password" required> <!-- Password input field -->
+                <input type="password" id="password" name="password" placeholder="Password" aria-label="Password" autocomplete="new-password" required> <!-- Password input field -->
                 <button type="button" class="show-hide" aria-label="Show password"><ion-icon name="eye-outline"></ion-icon></button> <!-- Button to toggle password visibility -->
             </div>
 
             <div class="input-group password confirm-password"> <!-- Input group for confirm password -->
                 <ion-icon name="lock-closed-outline"></ion-icon> <!-- Confirm password lock icon -->
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" required> <!-- Confirm password input field -->
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" aria-label="Confirm Password" autocomplete="new-password" required> <!-- Confirm password input field -->
                 <button type="button" class="show-hide" aria-label="Show password"><ion-icon name="eye-outline"></ion-icon></button> <!-- Button to toggle confirm password visibility -->
             </div>
 
